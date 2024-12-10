@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авторизация и Регистрация</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #8b1583;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .container h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .container form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .container input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      transition: border-color 0.3s ease;
+    }
+    .container input:focus {
+      border-color: #ac46a7;
+      outline: none;
+    }
+    .container button {
+      padding: 10px;
+      font-size: 16px;
+      background: #ac48ac;
+      color: #8c338d;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s;
+    }
+    .container button:hover {
+      background: #faf8fa;
+      transform: scale(1.05);
+    }
+    .container .toggle-link {
+      color: #6200ea;
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .container .toggle-link:hover {
+      text-decoration: underline;
+    }
+    .error {
+      color: #ff0033;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .success {
+      color: #28a745;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="authContainer">
+    <h1 id="formTitle">Войти</h1>
+    <form id="authForm">
+      <input type="text" id="username" placeholder="Имя пользователя" required>
+      <input type="password" id="password" placeholder="Пароль" required>
+      <button type="submit" id="authButton">Войти</button>
+      <p class="error" id="errorMessage" style="display: none;">Неправильное имя пользователя или пароль</p>
+      <p class="success" id="successMessage" style="display: none;">Регистрация успешна! Теперь вы можете войти.</p>
+    </form>
+    <a class="toggle-link" id="toggleLink">Нет аккаунта? Зарегистрируйтесь</a>
+  </div>
+
+  <script>
+    const authForm = document.getElementById("authForm");
+    const errorMessage = document.getElementById("errorMessage");
+    const successMessage = document.getElementById("successMessage");
+    const formTitle = document.getElementById("formTitle");
+    const authButton = document.getElementById("authButton");
+    const toggleLink = document.getElementById("toggleLink");
+
+    let isLoginMode = true; 
+    let registeredUsers = {};
+
+    toggleLink.addEventListener("click", () => {
+      isLoginMode = !isLoginMode;
+      if (isLoginMode) {
+        formTitle.textContent = "Войти";
+        authButton.textContent = "Войти";
+        toggleLink.textContent = "Нет аккаунта? Зарегистрируйтесь";
+        errorMessage.style.display = "none";
+        successMessage.style.display = "none";
+      } else {
+        formTitle.textContent = "Регистрация";
+        authButton.textContent = "Зарегистрироваться";
+        toggleLink.textContent = "Уже есть аккаунт? Войдите";
+        errorMessage.style.display = "none";
+        successMessage.style.display = "none";
+      }
+    });
+
+    authForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (isLoginMode) {
+        // Авторизация
+        if (registeredUsers[username] && registeredUsers[username] === password) {
+          alert("Вы успешно вошли!");
+          window.location.href = "1551.html"; // Перенаправление на главную страницу
+        } else {
+          errorMessage.style.display = "block";
+          errorMessage.textContent = "Неправильное имя пользователя или пароль";
+        }
+      } else {
+        // Регистрация
+        if (registeredUsers[username]) {
+          errorMessage.style.display = "block";
+          errorMessage.textContent = "Пользователь с таким именем уже существует";
+        } else {
+          registeredUsers[username] = password;
+          successMessage.style.display = "block";
+          successMessage.textContent = "Регистрация успешна! Теперь вы можете войти.";
+          toggleLink.click(); 
+        }
+      }
+    });
+  </script>
+</body>
+<head>
+  <link href="https://cdn.jsdelivr.net/gh/Alaev-Co/snowflakes/dist/snow.min.css" rel="stylesheet">
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/gh/Alaev-Co/snowflakes/dist/Snow.min.js"></script>
+  <script>
+    new Snow ();
+  </script>
+  <script>
+    new Snow ({
+      icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="64" height="64" fill="#000000"><path d="M 6 6 L 6 26 L 26 26 L 26 6 L 6 6 z"/></svg>,
+      showSnowBalls: true,
+      showSnowBallsIsMobile: true,
+      showSnowflakes: true,
+      countSnowflake: 100,
+      snowBallsLength: 10,
+      snowBallIterations: 40,
+      snowBallupNum: 1,
+      snowBallIterationsInterval: 1000,
+      clearSnowBalls: 20000,
+    });
+  </script>
+</body>
+</html>

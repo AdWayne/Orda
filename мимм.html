@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORTA</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #8e54cc;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product h3 {
+      margin: 15px 0;
+    }
+
+    .product p {
+      color: #666;
+      margin: 10px 0;
+    }
+
+    .product button {
+      padding: 10px 20px;
+      background: #8e54cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .product button:hover {
+      background: #8e54cc;
+    }
+
+    /* Корзина */
+    .cart {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .cart h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .cart-item p {
+      margin: 0;
+    }
+
+    .cart-total {
+      text-align: right;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 1.6rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero a {
+        font-size: 1rem;
+        padding: 8px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero h2 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ORTA</h1>
+    <p>Товары</p>
+    <nav>
+      <a href="1551.html">Главная</a>
+      <a href=125478.HTML>Связь</a>
+      <a href="мимм.html">Товары</a>
+    </nav>
+  
+  </header>
+
+  <div class="container">
+    <div class="product-grid">
+      <div class="product" data-name="Футболка" data-price="10990">
+        <img src="https://th.bing.com/th/id/OIP.djMr0NZ4z2iMvPfbclWnJQHaJ4?w=208&h=278&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Товар 1">
+        <h3>Футболка</h3>
+        <p>Цена: 10990₸</p>
+        <button onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Куртка бомбер" data-price="26490">
+        <img src="https://th.bing.com/th/id/OIP.RnaG9V1YSQvAT1c0SALjvwHaHy?w=208&h=278&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Товар 2">
+        <h3>Куртка бомбер</h3>
+        <p>Цена: 26490₸</p>
+        <button onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Штаны" data-price="11000">
+        <img src="https://th.bing.com/th/id/OIP.QcPUSzXlVRpCRqRpITWyTAHaHa?w=208&h=278&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Товар 3">
+        <h3>Штаны</h3>
+        <p>Цена: 11000₸</p>
+        <button onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Кепка" data-price="4560">
+        <img src="https://th.bing.com/th/id/OIP.ckvSIa8pvq_-fqreZ_FkrwHaGN?w=208&h=278&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Товар 4">
+        <h3>Кепка</h3>
+        <p>Цена: 4560₸</p>
+        <button onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Свитер" data-price="8990">
+        <img src="https://th.bing.com/th/id/OIF.9YlBl793Ftb60xz4CwPuKQ?w=208&h=278&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Товар 5">
+        <h3>Свитер</h3>
+        <p>Цена: 8990₸</p>
+        <button onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Худи" data-price="12590">
+        <img src="https://th.bing.com/th/id/OIP.78Nf6r2q2Mm1dF2N_NA73QHaFP?w=208&h=278&c=1&rs=1&qlt=90&r=0&dpr=1.7&pid=InlineBlock" alt="Товар 6">
+        <h3>Худи</h3>
+        <p>Цена: 12590₸</p>
+        <button onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Бомбер" data-price="15690">
+        <img src="https://th.bing.com/th/id/OIP.-pcOie_nUTjpxfRSGY1n1wHaHa?w=208&h=278&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Товар 7">
+        <h3>Бомбер</h3>
+        <p>Цена: 15690₸</p>
+        <button onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Кардиган" data-price="13500">
+        <img src="https://th.bing.com/th/id/OIP.h7zgoB6W7oN0MIqwgmso0AHaJ4?w=208&h=278&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Товар 8">
+        <h3>Кардиган</h3>
+        <p>Цена: 13500₸</p>
+        <button onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Шарф" data-price="3100">
+        <img src="https://th.bing.com/th/id/OIP.JqcDVG_4wuMBZsWfR1AOaQHaGq?w=208&h=278&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Товар 9">
+        <h3>Шарф</h3>
+        <p>Цена: 3100₸</p>
+        <button onclick="addToCart(this)">Добавить в корзину</button>
+      </div>
+      <div class="product" data-name="Кроссовки" data-price="23700">
+      <img src="C:\Users\skibi\Documents\Изображение WhatsApp 2024-12-10 в 01.03.46_b67f1005.jpg" alt="Товар 10">
+      <h3>Джорданы</h3>
+      <p>Цена: 15400₸</p>
+      <button onclick="addToCart(this)">Добавить в корзину</button>
+    </div>
+    </div>
+
+    <div class="cart">
+      <h2>Корзина</h2>
+      <div id="cart-items"></div>
+
+  </div>
+
+  <script>
+    const cartItems = {};
+  
+    function addToCart(button) {
+      const product = button.closest('.product');
+      const name = product.getAttribute('data-name');
+      const price = parseInt(product.getAttribute('data-price'), 10);
+  
+      if (!cartItems[name]) {
+        cartItems[name] = { price, quantity: 1 };
+      } else {
+        cartItems[name].quantity++;
+      }
+  
+      updateCart();
+    }
+  
+    function updateCart() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartTotalContainer = document.getElementById('cart-total');
+      
+      cartItemsContainer.innerHTML = '';
+      let total = 0;
+  
+      for (const name in cartItems) {
+        const item = cartItems[name];
+        total += item.price * item.quantity;
+  
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+          <p>${name} (x${item.quantity})</p>
+          <p>${item.price * item.quantity}₸</p>
+
+        `;
+        cartItemsContainer.appendChild(cartItem);
+      }
+  
+      
+    }
+  </script>
+  <head>
+    <link href="https://cdn.jsdelivr.net/gh/Alaev-Co/snowflakes/dist/snow.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/gh/Alaev-Co/snowflakes/dist/Snow.min.js"></script>
+    <script>
+      new Snow ();
+    </script>
+    <script>
+      new Snow ({
+        icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="64" height="64" fill="#000000"><path d="M 6 6 L 6 26 L 26 26 L 26 6 L 6 6 z"/></svg>,
+        showSnowBalls: true,
+        showSnowBallsIsMobile: true,
+        showSnowflakes: true,
+        countSnowflake: 100,
+        snowBallsLength: 10,
+        snowBallIterations: 40,
+        snowBallupNum: 1,
+        snowBallIterationsInterval: 1000,
+        clearSnowBalls: 20000,
+      });
+    </script>
+  </body>
+  </body>
+</html>
